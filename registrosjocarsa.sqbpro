@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Usuario/Desktop/registros (1).db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="150"/><column_width id="3" width="4390"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,11:mainhoravisitas"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="visitas por año">SELECT
+anio as 'año actual',
+count(anio) as 'numero de visitas este año'
+from logs
+GROUP by anio
+order by anio DESC</sql><sql name="visitas por mes año 2016">SELECT
+anio as 'año actual',
+mes as 'mes actual',
+count(anio) as 'numero de visitas este año'
+
+from logs
+
+WHERE anio = 2016
+
+GROUP by anio,mes
+order by anio, mes ASC</sql><sql name="anchura maxima de pantalla">SELECT
+ 
+pantallax,
+max(pantallax)as numero
+
+from logs
+WHERE
+anio=2016
+</sql><sql name="anchura minima de pantalla">SELECT
+ 
+pantallax,
+min(pantallax)as numero
+
+from logs
+WHERE
+anio = 2016
+AND
+pantallax&gt;400
+</sql><sql name="promedio de anchura de pantalla">SELECT
+ 
+anio,
+avg(pantallax)as numero
+
+from logs
+WHERE
+
+
+pantallax&gt;400
+GROUP by anio</sql><sql name="paises que mas visitas hace">SELECT
+
+extra3 as 'pais',
+count(extra3) as 'numero'
+
+from logs
+WHERE anio=2016
+and extra3 !=''
+GROUP by extra3
+ORDER by numero DESC</sql><sql name="visitas por cada ip">SELECT
+ip,
+count(ip) as numero
+FROM
+logs
+GROUP by ip
+order by numero DESC</sql><sql name="visitas windows">SELECT 
+count(navegador)as &quot;windows&quot;
+FROM
+logs
+WHERE
+navegador like &quot;%ios%&quot;;</sql><sql name="numerovisitaspormes">SELECT  
+mes,
+count (mes) as numero
+FROM
+logs
+
+WHERE anio = 2016
+GROUP BY mes</sql><sql name="horas del dia con mas visitas">SELECT 
+hora as'hora del dia',
+count(hora)as'numero de visitas'
+
+from logs
+
+/*WHERE anio = 2016 */
+GROUP by hora
+ORDER by count(hora)DESC</sql><sql name="simulacroexamen">SELECT
+hora as 'hora',
+count (hora) as 'visitas'
+FROM logs
+GROUP by hora
+ORDER by count(hora) DESC</sql><current_tab id="10"/></tab_sql></sqlb_project>
